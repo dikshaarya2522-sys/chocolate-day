@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Chocolate Day 🍫</title>
+
+<style>
+body{
+  margin:0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg,#ffe6f0,#fff0f5);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100vh;
+  overflow:hidden;
+}
+
+.card{
+  background:white;
+  padding:25px;
+  border-radius:25px;
+  text-align:center;
+  width:320px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.15);
+  animation: pop 1s ease;
+}
+
+@keyframes pop{
+  0%{transform:scale(0.7); opacity:0;}
+  100%{transform:scale(1); opacity:1;}
+}
+
+h1{
+  color:#c94a7c;
+  font-size:26px;
+}
+
+button{
+  margin-top:15px;
+  padding:12px 20px;
+  border:none;
+  border-radius:30px;
+  background:#ff85b3;
+  color:white;
+  font-size:15px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#ff5fa2;
+  transform:scale(1.05);
+}
+
+img{
+  width:100%;
+  border-radius:20px;
+  margin-top:15px;
+  display:none;
+  animation: fade 1.2s ease;
+}
+
+@keyframes fade{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+.text{
+  display:none;
+  margin-top:12px;
+  font-size:16px;
+  color:#8b3a62;
+  animation: fade 1s ease;
+}
+
+.choco{
+  position:absolute;
+  top:-50px;
+  font-size:24px;
+  animation: fall 3s linear infinite;
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="step1">
+  <h1>Happy Chocolate Day 🍫💖</h1>
+  <button onclick="showPic()">Tap for Surprise ✨</button>
+</div>
+
+<div class="card" id="step2" style="display:none;">
+  <img src="chocolate.jpg" id="photo">
+  <button onclick="showMore()">Tap for More 🍫</button>
+  <div class="text" id="msg">
+    These chocolates are for you 🍫💝<br>
+    Because you make life sweeter 💕✨
+  </div>
+</div>
+
+<script>
+function showPic(){
+  document.getElementById("step1").style.display="none";
+  document.getElementById("step2").style.display="block";
+  document.getElementById("photo").style.display="block";
+}
+
+function showMore(){
+  document.getElementById("msg").style.display="block";
+  for(let i=0;i<15;i++){
+    let c=document.createElement("div");
+    c.className="choco";
+    c.innerHTML="🍫";
+    c.style.left=Math.random()*100+"vw";
+    c.style.animationDuration=2+Math.random()*3+"s";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),5000);
+  }
+}
+</script>
+
+</body>
+</html>
